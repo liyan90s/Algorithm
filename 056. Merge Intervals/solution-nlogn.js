@@ -10,7 +10,7 @@
  * @return {Interval[]}
  */
 
-// Time: O(n)
+// Time: O(nlogn)
 var merge = function(intervals) {
     if (intervals === null || intervals.length === 0) return [];
 
@@ -38,4 +38,4 @@ var merge = function(intervals) {
     ret.push(curr);
     
     return ret;
-}
+};
