@@ -3,6 +3,8 @@
  * @param {number} target
  * @return {number[]}
  */
+
+// Time: O(n), Space: O(n)
 var twoSum = function(nums, target) {
     if (nums === null) return [];
     
