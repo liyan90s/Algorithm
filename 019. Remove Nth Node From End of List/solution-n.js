@@ -11,29 +11,28 @@
  * @return {ListNode}
  */
 
-// Time: O(m)
+// Time: O(head.length)
 var removeNthFromEnd = function(head, n) {
     if (head === null || head.next === null) return null;
     
     var dummyHead = new ListNode(0);
-    var prev = dummyHead;
-    var curr = dummyHead;
-    prev.next = head;
-    curr.next = head;
+    dummyHead.next = head;
+    var walker = dummyHead;
+    var runner = dummyHead;
     
     while (n > 0) {
-        if (curr === null) return null;
+        if (runner === null) return null;
         
-        curr = curr.next;
+        runner = runner.next;
         n--;
     }
     
-    while (curr.next != null) {
-        curr = curr.next;
-        prev = prev.next;
+    while (runner.next != null) {
+        walker = walker.next;
+        runner = runner.next;
     }
     
-    prev.next = prev.next.next;
+    walker.next = walker.next.next;
     
     return dummyHead.next;
 };
