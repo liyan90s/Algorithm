@@ -25,4 +25,4 @@ var longestPalindrome = function(s) {
     }
 
     return ret;
-}
+};
