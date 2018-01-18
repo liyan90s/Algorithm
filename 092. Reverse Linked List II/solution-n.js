@@ -27,33 +27,25 @@ var reverseBetween = function(head, m, n) {
     }
     
     var firstPartTail = runner;
+    var prevNode = null;
     counter = n - m;
     runner = runner.next;
     
-    while (counter > 0) {
-        runner = runner.next;
+    while (counter >= 0) {
+        if (runner === null) {
+            return head;
+        }
+        
+        var nextNode = runner.next;
+        runner.next = prevNode;
+        
+        prevNode = runner;
+        runner = nextNode;
         counter--;
     }
     
-    var lastPartHead = runner.next;
-    var reversedHead = reverse(firstPartTail.next, lastPartHead);
-    
-    firstPartTail.next.next = lastPartHead;
-    firstPartTail.next = reversedHead;
+    firstPartTail.next.next = runner;
+    firstPartTail.next = prevNode;
     
     return dummyHead.next;
 };
-
-var reverse = function(head, tail) {
-    var prevNode = null;
-    
-    while (head !== tail) {
-        var nextNode = head.next;
-        head.next = prevNode;
-        
-        prevNode = head;
-        head = nextNode;
-    }
-    
-    return prevNode;
-}
