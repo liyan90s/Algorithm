@@ -1,24 +1,25 @@
 /**
  * @param {string} s
- * @param {string} p
- * @return {number[]}
+ * @param {string} t
+ * @return {string}
  */
-var findAnagrams = function(s, p) {
-    if (s === null || p === null || s.length < p.length) {
-        return [];
+var minWindow = function(s, t) {
+    if (s === null || t === null || s.length < t.length) {
+        return '';
     }
     
     var map = {};
-    for (var i = 0; i < p.length; i++) {
-        map[p[i]] = map[p[i]] !== undefined ? map[p[i]] + 1 : 1;
+    for (var i = 0; i < t.length; i++) {
+        map[t[i]] = map[t[i]] !== undefined ? map[t[i]] + 1 : 1;
     }
     
+    var minLen = s.length + 1;
+    var minStart = 0;
     var count = 0;
     var right = 0;
-    var res = [];
     
     for (var left = 0; left < s.length; left++) {
-        while (right < s.length && count !== p.length) {
+        while (right < s.length && count !== t.length) {
             if (map[s[right]] !== undefined) {
                 map[s[right]]--;
                 
@@ -26,12 +27,14 @@ var findAnagrams = function(s, p) {
                     count++;
                 }
             }
+            
             right++;
         }
         
-        if (count === p.length) {
-            if (right - left === p.length) {
-                res.push(left);
+        if (count === t.length) {
+            if (right - left < minLen) {
+                minLen = right - left;
+                minStart = left;
             }
         }
         
@@ -43,5 +46,5 @@ var findAnagrams = function(s, p) {
         }        
     }
     
-    return res;
+    return minLen > s.length ? '' : s.substring(minStart, minStart + minLen);
 };

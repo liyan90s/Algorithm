@@ -3,8 +3,6 @@
  * @param {string} p
  * @return {number[]}
  */
-
-// Template version
 var findAnagrams = function(s, p) {
     if (s === null || p === null || s.length < p.length) {
         return [];
@@ -12,35 +10,40 @@ var findAnagrams = function(s, p) {
     
     var map = {};
     for (var i = 0; i < p.length; i++) {
-        map[p[i]] = map[p[i]] === undefined ? 1 : map[p[i]] + 1;
+        if (map[p[i]] === undefined) {
+            map[p[i]] = 1;
+        } else {
+            map[p[i]]++;
+        }
     }
     
-    var count = 0;
     var left = 0;
     var res = [];
-    
+    var count = 0;
     for (var right = 0; right < s.length; right++) {
         if (map[s[right]] !== undefined) {
-            map[s[right]]--;
-            
-            if (map[s[right]] >= 0) {
-                count++;
-            }
-            
-            while (count === p.length) {
-                if (right - left + 1 === p.length) {
-                    res.push(left);
-                }
-                
+            while (map[s[right]] === 0) {
                 if (map[s[left]] !== undefined) {
                     map[s[left]]++;
-                    if (map[s[left]] > 0) {
-                        count--;
-                    }
+                    count--;
                 }
-                
                 left++;
             }
+            
+            map[s[right]]--;
+            count++;
+        } else {
+            count = 0;
+            while (left <= right) {
+                if (map[s[left]] !== undefined) {
+                    map[s[left]]++;
+                }
+                left++;
+            }
+        }
+        
+        if (count === p.length) {
+            res.push(left);
         }
     }
     
