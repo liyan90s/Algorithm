@@ -11,8 +11,8 @@ var minSubArrayLen = function(s, nums) {
     var res = nums.length + 1;
     
     for (var left = 0; left < nums.length; left++) {
-        while (right < nums.length && sum < s) {    // while loop (sum / counter)
-            sum += nums[right];                     // update context (sum / hashmap)
+        while (right < nums.length && sum < s) {    // while loop (check sum or counter)
+            sum += nums[right];                     // update context (update sum or hashmap)
             right++;                                // move right pointer
         }
         
