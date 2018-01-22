@@ -10,33 +10,28 @@ var findAnagrams = function(s, p) {
     
     var map = {};
     for (var i = 0; i < p.length; i++) {
-        if (map[p[i]] !== undefined) {
-            map[p[i]]++;
-        } else {
+        if (map[p[i]] === undefined) {
             map[p[i]] = 1;
+        } else {
+            map[p[i]]++;
         }
     }
     
-    var res = [];
     var left = 0;
+    var res = [];
     var count = 0;
     for (var right = 0; right < s.length; right++) {
         if (map[s[right]] !== undefined) {
-            if (map[s[right]] > 0) {
-                map[s[right]]--;
-                count++;
-            } else {
-                while (map[s[right]] === 0) {
-                    if (map[s[left]] !== undefined) {
-                        map[s[left]]++;
-                        count--;
-                    }
-                    left++;
+            while (map[s[right]] === 0) {
+                if (map[s[left]] !== undefined) {
+                    map[s[left]]++;
+                    count--;
                 }
-                
-                map[s[right]]--;
-                count++;
+                left++;
             }
+            
+            map[s[right]]--;
+            count++;
         } else {
             count = 0;
             while (left <= right) {
