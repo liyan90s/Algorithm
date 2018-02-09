@@ -14,9 +14,13 @@ class Solution {
                 right++;
             }
             
-            maxLen = Math.max(maxLen, right - left);
+            if (right == s.length() || set.contains(s.charAt(right))) {
+                maxLen = Math.max(maxLen, right - left);
+            }            
             
-            set.remove(s.charAt(left));
+            if (set.contains(s.charAt(left))) {
+                set.remove(s.charAt(left));
+            }            
         }
         
         return maxLen;
