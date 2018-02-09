@@ -5,7 +5,9 @@
 
 // Time: O(n^2), Space: O(n^2)
 var longestPalindrome = function(s) {
-    if (s === null || s.length <= 1) return s;
+    if (s === null || s.length <= 1) {
+        return s;
+    }
 
     var pal = new Array(s.length);
     for (var i = 0; i < pal.length; i++) {
