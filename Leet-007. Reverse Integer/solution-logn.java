@@ -3,18 +3,14 @@ class Solution {
         int max = Integer.MAX_VALUE;
         int min = Integer.MIN_VALUE;
         
-        boolean isNeg = false;
-        if (x < 0) {
-            isNeg = true;
-        }
-        
+        boolean isNeg = x < 0 ? true : false;
         x = Math.abs(x);
         int res = 0;
         
         while (x > 0) {
             int digit = x % 10;
             
-            if (max / 10 < res || max - digit < res * 10) {
+            if (max / 10 < res || max / 10 == res && max % 10 < digit) {
                 return 0;
             }
             
