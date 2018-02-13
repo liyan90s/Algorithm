@@ -23,15 +23,15 @@ var kthSmallest = function(matrix, k) {
             while (j >= 0 && matrix[i][j] > mid) {
                 j--;
             }
-            
+
             if (matrix[i][j] === mid) {
                 midExists = true;
-            }
+            }            
             
             count += j + 1;
         }
         
-        if (midExists && count === k) {
+        if (midExists && count === k ) {
             return mid;
         }
         
