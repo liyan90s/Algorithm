@@ -28,7 +28,7 @@ public class Solution {
             
             if (count > k) {
                 maxLen = Math.max(maxLen, right - left - 1);
-            } else if (right == s.length()) {               // need to check when right ptr hits the end !!
+            } else {               // need to check when right ptr hits the end !!
                 maxLen = Math.max(maxLen, right - left);
             }
             
