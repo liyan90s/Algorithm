@@ -32,7 +32,7 @@ public void quickSort(int[] nums, int left, int right) {
         }
     }
 
-    swap(nums, left, hi);
+    swap(nums, left, hi);               // swap the pivot with the value at 'hi' index
 
     if (left < hi) {
         helper(nums, left, hi);
