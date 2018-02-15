@@ -1,42 +1,46 @@
 class MyQueue {
-    Stack<Integer> mainStack, helperStack;
+    Stack<Integer> mainStack, helpStack;
     
     /** Initialize your data structure here. */
     public MyQueue() {
         mainStack = new Stack<>();
-        helperStack = new Stack<>();
+        helpStack = new Stack<>();
     }
     
     /** Push element x to the back of queue. */
     public void push(int x) {
         mainStack.push(x);
     }
-
-    public void transferStack() {
-        while (!mainStack.isEmpty()) {
-            helperStack.push(mainStack.pop());
-        }
-    }
     
     /** Removes the element from in front of queue and returns that element. */
     public int pop() {
-        if (helperStack.isEmpty()) {
-            transferStack();
+        if (!helpStack.isEmpty()) {
+            return helpStack.pop();
+        } 
+        
+        while (!mainStack.isEmpty()) {
+            helpStack.push(mainStack.pop());
         }
-        return helperStack.pop();
+        
+        return helpStack.isEmpty() ? Integer.MAX_VALUE : helpStack.pop();
     }
     
     /** Get the front element. */
     public int peek() {
-        if (helperStack.isEmpty()) {
-            transferStack();
+        if (!helpStack.isEmpty()) {
+            return helpStack.peek();
         }
-        return helperStack.peek();
+        
+        while (!mainStack.isEmpty()) {
+            helpStack.push(mainStack.pop());
+        }
+        
+        return helpStack.isEmpty() ? Integer.MAX_VALUE : helpStack.peek();
     }
     
     /** Returns whether the queue is empty. */
     public boolean empty() {
-        return mainStack.isEmpty() && helperStack.isEmpty();
+        return mainStack.isEmpty() && helpStack.isEmpty();
     }
 }
 
