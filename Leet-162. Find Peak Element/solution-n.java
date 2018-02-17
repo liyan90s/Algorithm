@@ -4,11 +4,11 @@ class Solution {
             return 0;
         }
         
-        int idx = 0;
-        while (idx < nums.length - 1 && nums[idx] < nums[idx + 1]) {
-            idx++;
+        int i = 1;
+        while (i < nums.length && nums[i - 1] < nums[i]) {
+            i++;
         }
         
-        return idx;
+        return i - 1;
     }
 }
