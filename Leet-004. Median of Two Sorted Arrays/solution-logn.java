@@ -9,11 +9,11 @@ class Solution {
         if (len % 2 == 0) {
             return (findKthLargest(nums1, 0, nums2, 0, len / 2) + findKthLargest(nums1, 0, nums2, 0, len / 2 + 1)) / 2.0;
         } else {
-            return findKthLargest(nums1, 0, nums2, 0, len / 2 + 1);
+            return (double) findKthLargest(nums1, 0, nums2, 0, len / 2 + 1);
         }
     }
     
-    public double findKthLargest(int[] nums1, int start1, int[] nums2, int start2, int k) {
+    public int findKthLargest(int[] nums1, int start1, int[] nums2, int start2, int k) {
         if (start1 >= nums1.length) {
             return nums2[start2 + k - 1];
         } 
