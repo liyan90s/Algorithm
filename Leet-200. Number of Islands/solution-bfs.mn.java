@@ -5,39 +5,28 @@ class Solution {
             return 0;
         }
         
-        int m = grid.length, n = grid[0].length;
+        Queue<int[]> q = new LinkedList<>();
         int count = 0;
-        Queue<Integer[]> queue = new LinkedList<>();
-        for (int i = 0; i < m; i++) {
-            for (int j = 0; j < n; j++) {
+        int[][] dirs = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
+        for (int i = 0; i < grid.length; i++) {
+            for (int j = 0; j < grid[0].length; j++) {
                 if (grid[i][j] == '1') {
-                    count++;                                        
-                    grid[i][j] = '0';                    
-                    queue.offer(new Integer[] {i, j});
+                    count++;
+                    grid[i][j] = '0';
                     
-                    while (!queue.isEmpty()) {
-                        Integer[] idx = queue.poll();
-                        int row = idx[0], col = idx[1];                        
+                    q.add(new int[] {i, j});
+                    while (!q.isEmpty()) {
+                        int[] idx = q.remove();
                         
-                        if (row - 1 >= 0 && grid[row - 1][col] == '1') {
-                            queue.offer(new Integer[] {row - 1, col});
-                            grid[row - 1][col] = '0';
-                        }
-                        
-                        if (row + 1 < m && grid[row + 1][col] == '1') {
-                            queue.offer(new Integer[] {row + 1, col});
-                            grid[row + 1][col] = '0';
-                        }
-                        
-                        if (col - 1 >= 0 && grid[row][col - 1] == '1') {
-                            queue.offer(new Integer[] {row, col - 1});
-                            grid[row][col - 1] = '0';
-                        }
-                        
-                        if (col + 1 < n && grid[row][col + 1] == '1') {
-                            queue.offer(new Integer[] {row, col + 1});
-                            grid[row][col + 1] = '0';
-                        }
+                        for (int k = 0; k < 4; k++) {
+                            int nextRow = idx[0] + dirs[k][0];
+                            int nextCol = idx[1] + dirs[k][1];
+                            
+                            if (nextRow >= 0 && nextRow < grid.length && nextCol >= 0 && nextCol < grid[0].length && grid[nextRow][nextCol] == '1') {
+                                grid[nextRow][nextCol] = '0';
+                                q.add(new int[] {nextRow, nextCol});
+                            }
+                       }
                     }
                 }
             }
