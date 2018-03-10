@@ -26,7 +26,7 @@ public class Solution {
         }
         
         for (int i = len / 2; i >= 0; i--) {
-            buildMaxHeap(A, i, A.length);
+            buildMaxHeap(A, i, len);
         }
     }
     
