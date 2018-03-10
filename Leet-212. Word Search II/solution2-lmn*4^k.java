@@ -2,9 +2,9 @@
 // l = words.length, m = board.length, n = board[0].length, k = word.length()
 class Solution {
     public List<String> findWords(char[][] board, String[] words) {
-        List<String> res = new ArrayList<>();
+        Set<String> res = new HashSet<>();
         if (board == null || board.length == 0 || board[0].length == 0 || words == null || words.length == 0) {
-            return res;
+            return new ArrayList<>(res);
         }        
         
         for (String word : words) {
@@ -13,7 +13,7 @@ class Solution {
             }
         }
         
-        return res;
+        return new ArrayList<>(res);
     }
     
     public boolean exist(char[][] board, String word) {        
