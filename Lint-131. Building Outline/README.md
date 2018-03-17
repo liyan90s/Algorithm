@@ -20,4 +20,4 @@ The outlines are：
 ]
 ```
 
-[link](http://www.lintcode.com/en/problem/building-outline)
+[Problem Link](http://www.lintcode.com/en/problem/building-outline)
