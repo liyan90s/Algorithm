@@ -15,6 +15,7 @@ The minimum number of jumps to reach the last index is 2. (Jump 1 step from inde
 **Note:**
 You can assume that you can always reach the last index.
 
+***
 
 ### Approach
 The main idea is based on greedy. Let’s say the range of the current jump is `[curBegin, curEnd]`, `furthest` is the furthest point that all points in [curBegin, curEnd] can reach. Once the current point reaches `curEnd`, then trigger another jump, and set the new curEnd with furthest, then keep the above steps.
