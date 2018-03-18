@@ -9,7 +9,7 @@ class Solution {
         int top = 0, bottom = n - 1;
         int num = 1;
         
-        while (left <= right) {
+        while (left <= right && top <= bottom) {
             for (int j = left; j <= right; j++) {
                 res[top][j] = num++;
             }
@@ -19,6 +19,11 @@ class Solution {
                 res[i][right] = num++;
             }
             right--;
+            
+            // this check for general, when required a m * n matrix to return
+            if (left > right || top > bottom) {
+                break ;
+            }
             
             for (int j = right; j >= left; j--) {
                 res[bottom][j] = num++;
