@@ -23,5 +23,8 @@ The total number of unique paths is 2.
 ***
 
 ### Approach
-when see a `1`, set the `dp[i][j] = 0`, else, `dp[i][j] = dp[i - 1][j] + dp[i][j - 1]`;
+When see a `1`, set the `dp[i][j] = 0`, else, `dp[i][j] = dp[i - 1][j] + dp[i][j - 1]`;
 
+To optimize space:
+Since we observe that `dp[i][j]` only needs the value of `dp[i - 1][j]` and `dp[i][j - 1]`, we can use a 1-D array to store the previous rows value.
+Then, when calculating the current `dp[j]`, we can use current `dp[j - 1]`, which we've already updated in this row, and previous `dp[j]` to update the current `dp[j]`.
