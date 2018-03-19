@@ -28,3 +28,8 @@ Given target = 3, return true.
 * treat the 2D matrix to be a sorted list, index range is: `[0, m * n - 1]`, where `m = matrix.length`,  `n = matrix[0].length`
 * for a specific index: `row = mid / n`, `col = mid % n`.
 * **NOTE** this may cause overflow when doing `m * n`
+
+#### Sol3:
+* start from the top-right corner, check if current val < target, `row++`;
+* if current val > target, `col--`.
+* **NOTE**: the reason why we can do this is to treat the matrix as a binary search tree, which root is at the top-right or bottom-left corner !!
