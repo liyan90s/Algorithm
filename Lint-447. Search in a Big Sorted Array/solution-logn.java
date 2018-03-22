@@ -13,8 +13,12 @@ public class Solution {
         int right = 1;
 
         // find the upper bound
-        while (reader.get(right) < target) {
+        while (reader.get(right) < target && reader.get(right) != 2147483647) {
             right <<= 1;
+        }
+        
+        while (right > left && reader.get(right) == 2147483647) {
+            right--;
         }
         
         while (left + 1 < right) {
