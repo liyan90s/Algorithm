@@ -1,8 +1,5 @@
-public class Solution {
-    /**
-     * @param nums: an array containing n + 1 integers which is between 1 and n
-     * @return: the duplicate one
-     */
+// Time: O(nlogn), Space: O(1)
+class Solution {
     public int findDuplicate(int[] nums) {
         if (nums == null || nums.length == 0) {
             return 0;
@@ -11,30 +8,29 @@ public class Solution {
         int left = 0, right = nums.length - 1;
         while (left + 1 < right) {
             int mid = left + (right - left) / 2;
-            int cnt = count(nums, mid);
             
-            if (cnt <= mid) {
-                left = mid;
-            } else {
+            if (count(nums, mid) > mid) {
                 right = mid;
+            } else {
+                left = mid;
             }
         }
         
         if (count(nums, left) > left) {
             return left;
+        } else {
+            return right;
         }
-        
-        return right;
     }
     
     public int count(int[] nums, int mid) {
-        int res = 0;
+        int count = 0;
         for (int val : nums) {
             if (val <= mid) {
-                res++;
+                count++;
             }
         }
         
-        return res;
+        return count;
     }
 }
