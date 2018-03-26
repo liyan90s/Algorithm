@@ -7,9 +7,6 @@
  *     TreeNode(int x) { val = x; }
  * }
  */
-
-// Time: O(n), worst case is that all the nodes are in one direction, either all in left, or all in right
-// Time: O(logn), if tree is balanced
 class Solution {
     public int closestValue(TreeNode root, double target) {
         if (root == null) {
@@ -18,6 +15,10 @@ class Solution {
         
         int res = root.val;
         while (root != null) {
+            if (root.val == target) {
+                return root.val;
+            }
+            
             if (Math.abs(root.val - target) < Math.abs(res - target)) {
                 res = root.val;
             }
