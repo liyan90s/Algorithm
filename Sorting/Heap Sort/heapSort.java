@@ -11,7 +11,7 @@ public class Solution {
         heapify(nums, nums.length);
         
         for (int i = nums.length - 1; i >= 0; i--) {
-            swap(nums, i, 0);
+            swap(nums, 0, i);
             heapify(nums, i);
         }
     }
