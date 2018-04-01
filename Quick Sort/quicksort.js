@@ -13,11 +13,11 @@ const quickSort = (nums, left, right) => {
     let hi = right;
 
     while (lo <= hi) {
-        while (lo <= hi && nums[lo] <= pivot) {
+        while (lo <= hi && nums[lo] < pivot) {
             lo++;
         }
 
-        while (lo <= hi && nums[hi] >= pivot) {
+        while (lo <= hi && nums[hi] > pivot) {
             hi--;
         }
 
