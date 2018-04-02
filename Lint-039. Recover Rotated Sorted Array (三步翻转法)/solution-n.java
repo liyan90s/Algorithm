@@ -18,7 +18,8 @@ public class Solution {
         }
         
         reverse(nums, i, nums.size() - 1);
-        reverse(nums, 0, i - 1);
+        reverse(nums, 0, i - 1);    
+        // now, the whole array is in reversed order
         reverse(nums, 0, nums.size() - 1);
     }
     
