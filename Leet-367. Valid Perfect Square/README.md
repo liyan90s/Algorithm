@@ -8,6 +8,7 @@ Input: 16
 Returns: True
 ```
 
+
 **Example 2:**
 ```java
 Input: 14
